@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+    --primary: 217 75% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 15%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 45%;
+    --accent: 210 20% 93%;
+    --accent-foreground: 215 25% 15%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 91%;
+    --input: 214 20% 91%;
+    --ring: 217 75% 42%;
+    --chart-1: 217 75% 42%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.5rem;
+    --sidebar: 217 75% 42%;
+    --sidebar-foreground: 0 0% 100%;
+  }
+  .dark {
+    --background: 222 30% 8%;
+    --foreground: 210 20% 98%;
+    --card: 222 30% 11%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222 30% 11%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 217 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 222 30% 15%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 222 30% 18%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 217 75% 55%;
+    --chart-1: 217 75% 55%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 340 75% 55%;
+    --sidebar: 222 30% 11%;
+    --sidebar-foreground: 210 20% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full border;
+  }
+  .status-dot {
+    @apply w-1.5 h-1.5 rounded-full;
+  }
+}
