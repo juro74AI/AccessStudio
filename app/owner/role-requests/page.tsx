@@ -5,7 +5,7 @@ import { useAuth } from '@/lib/auth-context';
 import { AppShell } from '@/components/app-shell';
 import { LoginPage } from '@/components/login-page';
 import { supabase } from '@/lib/supabase';
-import { RoleRequest, Role, User } from '@/lib/types';
+import { Role, User, RequestStatus } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -50,7 +50,7 @@ interface RoleRequestWithDetails {
   user_id: string;
   role_id: string;
   profile_id: string | null;
-  status: RoleRequest['status'];
+  status: RequestStatus;
   manager_comment: string | null;
   manager_decided_at: string | null;
   owner_comment: string | null;

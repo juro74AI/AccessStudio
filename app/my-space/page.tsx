@@ -75,7 +75,7 @@ export default function MySpacePage() {
   const [loading, setLoading] = useState(true);
   const [showRequestDialog, setShowRequestDialog] = useState(false);
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
-  const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
+  const [selectedProfile, setSelectedProfile] = useState<ProfileWithRoles | null>(null);
   const [requestReason, setRequestReason] = useState('');
   const [roleSearch, setRoleSearch] = useState('');
   const [submitting, setSubmitting] = useState(false);
