@@ -15,8 +15,10 @@ export default function Home() {
     if (user && !loading) {
       if (user.persona === 'manager') {
         router.replace('/dashboard');
-      } else {
+      } else if (user.persona === 'owner') {
         router.replace('/validations');
+      } else {
+        router.replace('/my-space');
       }
     }
   }, [user, loading, router]);

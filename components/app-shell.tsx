@@ -19,6 +19,9 @@ import {
   LogOut,
   ChevronDown,
   UserCog,
+  User,
+  Inbox,
+  ListChecks,
 } from 'lucide-react';
 import { Persona } from '@/lib/types';
 
@@ -29,14 +32,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   if (!user) return null;
 
   const isManager = user.persona === 'manager';
+  const isOwner = user.persona === 'owner';
+  const isUser = user.persona === 'user';
 
   const navItems = isManager
     ? [
         { href: '/dashboard', label: 'Profiles', icon: LayoutDashboard },
+        { href: '/roles', label: 'Roles Catalog', icon: UserCog },
+        { href: '/manager/role-requests', label: 'Role Requests', icon: Inbox },
       ]
-    : [
-        { href: '/validations', label: 'Validations', icon: CheckSquare },
-      ];
+    : isOwner
+      ? [
+          { href: '/validations', label: 'Validations', icon: CheckSquare },
+          { href: '/owner/role-requests', label: 'Role Requests', icon: ListChecks },
+        ]
+      : [
+          { href: '/my-space', label: 'My Space', icon: User },
+        ];
 
   return (
     <div className="min-h-screen flex">
@@ -64,19 +76,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Link>
             );
           })}
-          {isManager && (
-            <Link
-              href="/roles"
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                pathname === '/roles'
-                  ? 'bg-white/15 text-white'
-                  : 'text-white/70 hover:bg-white/10 hover:text-white'
-              }`}
-            >
-              <UserCog className="h-4 w-4" />
-              Roles Catalog
-            </Link>
-          )}
         </nav>
         <div className="p-3 border-t border-white/10">
           <div className="flex items-center gap-3 px-3 py-2">

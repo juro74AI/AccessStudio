@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useAuth } from '@/lib/auth-context';
-import { Shield, Users, UserCheck } from 'lucide-react';
+import { Shield, Users, UserCheck, User } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ export function LoginPage() {
 
   const managers = users.filter(u => u.persona === 'manager');
   const owners = users.filter(u => u.persona === 'owner');
+  const usersList = users.filter(u => u.persona === 'user');
 
   return (
     <div className="min-h-screen bg-[hsl(var(--background))] flex flex-col">
@@ -31,11 +32,11 @@ export function LoginPage() {
           </p>
         </div>
       </div>
-<br></br>
+      <br></br>
       <br></br>
       {/* Login cards */}
       <div className="max-w-4xl mx-auto px-6 -mt-4 w-full">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Managers */}
           <Card className="border shadow-lg">
             <CardHeader className="pb-3">
@@ -60,6 +61,42 @@ export function LoginPage() {
                 >
                   <Avatar className="h-9 w-9 shrink-0">
                     <AvatarFallback className="bg-[hsl(var(--primary))] text-white text-xs font-semibold">
+                      {user.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="text-left">
+                    <p className="text-sm font-medium">{user.name}</p>
+                    <p className="text-xs text-[hsl(var(--muted-foreground))]">{user.email}</p>
+                  </div>
+                </Button>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Users */}
+          <Card className="border shadow-lg">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="h-9 w-9 rounded-lg bg-sky-500/10 flex items-center justify-center">
+                  <User className="h-5 w-5 text-sky-600" />
+                </div>
+                <div>
+                  <CardTitle className="text-base">Users</CardTitle>
+                  <CardDescription className="text-xs">View profiles and request roles</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {usersList.map((user) => (
+                <Button
+                  key={user.id}
+                  variant="outline"
+                  className="w-full justify-start gap-3 h-auto py-3 px-3 hover:bg-sky-50 hover:border-sky-200 transition-all"
+                  onClick={() => login(user.id)}
+                  disabled={loading}
+                >
+                  <Avatar className="h-9 w-9 shrink-0">
+                    <AvatarFallback className="bg-sky-600 text-white text-xs font-semibold">
                       {user.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>

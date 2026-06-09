@@ -1,4 +1,4 @@
-export type Persona = 'manager' | 'owner';
+export type Persona = 'manager' | 'owner' | 'user';
 
 export type ProfileStatus = 'draft' | 'pending_approval' | 'partially_approved' | 'approved' | 'rejected';
 
@@ -56,4 +56,35 @@ export interface Validation {
   profile?: Profile;
   role?: Role;
   owner?: User;
+}
+
+export type RequestStatus = 'pending_manager' | 'manager_approved' | 'approved' | 'rejected';
+
+export interface RoleRequest {
+  id: string;
+  user_id: string;
+  role_id: string;
+  profile_id: string | null;
+  status: RequestStatus;
+  manager_comment: string | null;
+  manager_decided_at: string | null;
+  owner_comment: string | null;
+  owner_decided_at: string | null;
+  created_at: string;
+  updated_at: string;
+  user?: User;
+  role?: Role;
+  profile?: Profile;
+  owner?: User;
+}
+
+export interface UserProfile {
+  id: string;
+  user_id: string;
+  profile_id: string;
+  assigned_at: string;
+  assigned_by: string | null;
+  profile?: Profile;
+  user?: User;
+  assigner?: User;
 }
