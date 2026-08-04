@@ -88,3 +88,59 @@ export interface UserProfile {
   user?: User;
   assigner?: User;
 }
+
+// OpenFGA resource types
+export interface FGAResource {
+  id: string;
+  name: string;
+  resource_type: string;
+  parent_id: string | null;
+  owner_id: string;
+  metadata: Record<string, unknown> | null;
+  created_at: string;
+  owner?: User;
+  parent?: FGAResource | null;
+}
+
+export type AccessRequestStatus = 'pending' | 'approved' | 'rejected';
+
+export interface AccessRequest {
+  id: string;
+  profile_id: string;
+  resource_id: string;
+  resource_type: string;
+  relation: string;
+  relation_label: string;
+  status: AccessRequestStatus;
+  requested_by: string;
+  owner_id: string;
+  manager_comment: string | null;
+  owner_comment: string | null;
+  decided_at: string | null;
+  requires_approval: boolean;
+  tuple_written: boolean;
+  created_at: string;
+  updated_at: string;
+  profile?: Profile;
+  resource?: FGAResource;
+  requester?: User;
+  owner?: User;
+}
+
+export interface AccessAudit {
+  id: string;
+  tuple_user: string;
+  tuple_relation: string;
+  tuple_object: string;
+  action: 'write' | 'delete';
+  requester_id: string;
+  approver_id: string | null;
+  profile_id: string;
+  resource_id: string;
+  resource_type: string;
+  created_at: string;
+  requester?: User;
+  approver?: User | null;
+  profile?: Profile;
+  resource?: FGAResource;
+}

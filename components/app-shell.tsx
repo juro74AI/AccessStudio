@@ -45,6 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       ? [
           { href: '/validations', label: 'Validations', icon: CheckSquare },
           { href: '/owner/role-requests', label: 'Role Requests', icon: ListChecks },
+          { href: '/owner/access-requests', label: 'Access Requests', icon: Shield },
         ]
       : [
           { href: '/my-space', label: 'My Space', icon: User },
