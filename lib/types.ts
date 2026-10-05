@@ -89,6 +89,23 @@ export interface UserProfile {
   assigner?: User;
 }
 
+export interface HREmployee {
+  id: string;
+  user_id: string;
+  employee_id: string;
+  department: string;
+  job_title: string;
+  hire_date: string;
+  contract_type: string;
+  manager_id: string | null;
+  location: string | null;
+  created_at: string;
+  updated_at: string;
+  user?: User;
+  manager?: User | null;
+  user_profiles?: UserProfile[];
+}
+
 // OpenFGA resource types
 export interface FGAResource {
   id: string;

@@ -20,6 +20,7 @@ import {
   ChevronDown,
   UserCog,
   User,
+  Users,
   Inbox,
   ListChecks,
 } from 'lucide-react';
@@ -38,6 +39,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const navItems = isManager
     ? [
         { href: '/dashboard', label: 'Profiles', icon: LayoutDashboard },
+        { href: '/my-team', label: 'My Team', icon: Users },
         { href: '/roles', label: 'Roles Catalog', icon: UserCog },
         { href: '/manager/role-requests', label: 'Role Requests', icon: Inbox },
       ]
