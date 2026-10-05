@@ -141,7 +141,7 @@ export default function MyTeamPage() {
     const [hrRes, profilesRes] = await Promise.all([
       supabase
         .from('hr_employees')
-        .select('*, user:users!hr_employees_user_id_fkey(*), manager:users!hr_employees_manager_id_fkey(*), user_profiles(profile:profiles(*))')
+        .select('*, user:users!hr_employees_user_id_fkey(*), manager:users!hr_employees_manager_id_fkey(*)')
         .eq('manager_id', user.id)
         .order('created_at'),
       supabase
@@ -150,7 +150,35 @@ export default function MyTeamPage() {
         .order('name'),
     ]);
 
-    if (hrRes.data) setMembers(hrRes.data as unknown as TeamMember[]);
+    if (hrRes.error || !hrRes.data) {
+      toast.error('Failed to load team data');
+      setLoading(false);
+      return;
+    }
+
+    const memberData = hrRes.data as unknown as TeamMember[];
+
+    const userIds = memberData.map((m) => m.user_id);
+    if (userIds.length > 0) {
+      const { data: upData } = await supabase
+        .from('user_profiles')
+        .select('id, user_id, profile_id, profile:profiles(*)')
+        .in('user_id', userIds);
+
+      if (upData) {
+        const upByUser = new Map<string, TeamMember['user_profiles']>();
+        for (const up of upData as any[]) {
+          const arr = upByUser.get(up.user_id) || [];
+          arr.push({ id: up.id, profile_id: up.profile_id, profile: up.profile });
+          upByUser.set(up.user_id, arr);
+        }
+        for (const m of memberData) {
+          m.user_profiles = upByUser.get(m.user_id) || [];
+        }
+      }
+    }
+
+    setMembers(memberData);
     if (profilesRes.data) setProfiles(profilesRes.data as Profile[]);
     setLoading(false);
   }, [user]);
