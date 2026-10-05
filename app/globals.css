@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
+    --background: 220 24% 97%;
+    --foreground: 220 36% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 220 36% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
-    --primary: 217 75% 42%;
+    --popover-foreground: 220 36% 12%;
+    --primary: 218 82% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 215 25% 15%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 15% 45%;
-    --accent: 210 20% 93%;
-    --accent-foreground: 215 25% 15%;
+    --secondary: 216 32% 95%;
+    --secondary-foreground: 220 36% 12%;
+    --muted: 216 28% 95%;
+    --muted-foreground: 216 20% 45%;
+    --accent: 216 32% 92%;
+    --accent-foreground: 220 36% 12%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214 20% 91%;
-    --input: 214 20% 91%;
-    --ring: 217 75% 42%;
-    --chart-1: 217 75% 42%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 340 75% 55%;
-    --radius: 0.5rem;
-    --sidebar: 217 75% 42%;
-    --sidebar-foreground: 0 0% 100%;
+    --border: 216 26% 88%;
+    --input: 216 26% 88%;
+    --ring: 218 82% 52%;
+    --chart-1: 218 82% 52%;
+    --chart-2: 160 72% 43%;
+    --chart-3: 37 92% 51%;
+    --chart-4: 197 72% 47%;
+    --chart-5: 0 72% 56%;
+    --radius: 0.65rem;
+    --sidebar: 222 43% 10%;
+    --sidebar-foreground: 215 30% 90%;
   }
   .dark {
     --background: 222 30% 8%;
@@ -69,12 +69,16 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
   .status-badge {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full border;
+  }
+  .surface-card {
+    @apply rounded-xl border bg-white shadow-sm;
   }
   .status-dot {
     @apply w-1.5 h-1.5 rounded-full;
